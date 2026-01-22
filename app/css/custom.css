@@ -1,0 +1,115 @@
+
+.small-box .icon {
+    width: 50px;        /* default is 90px */
+    height: 50px;       /* default is 90px */
+    top: 10px;          /* adjust vertical position */
+    right: 10px;        /* adjust horizontal position */
+}
+
+.small-box .icon i {
+    font-size: 24px !important;  /* smaller than default 60px */
+    line-height: 50px;           /* match the new icon container */
+}
+/* app.css or custom.css */
+.main-sidebar {
+    min-height: 100vh;  /* full viewport height */
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* ensures child elements can stretch */
+}
+
+.nav-sidebar {
+    flex-grow: 1; /* nav menu takes remaining vertical space */
+}
+
+.content-wrapper {
+    min-height: calc(100vh - 57px);
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.card-header-custom {
+    background-color: rgb(70, 130, 180); /* your custom color */
+    color: white; /* text color */
+}
+
+/* =====================================================
+   AdminLTE Custom Gradient Theme
+   ===================================================== */
+
+/* -----------------------------
+   Navbar Gradient
+   ----------------------------- */
+.main-header.navbar {
+    background: linear-gradient(90deg, #8B4513, #4B3621) !important; /* left to right brown → coffee */
+    color: #fff !important;
+    border-bottom: none !important;
+}
+
+.main-header .nav-link,
+.main-header .brand-link,
+.main-header .dropdown-menu button,
+.main-header .dropdown-menu a {
+    color: #fff !important;
+}
+
+.main-header .nav-link:hover,
+.main-header .dropdown-menu button:hover,
+.main-header .dropdown-menu a:hover {
+    color: #ffd699 !important; /* subtle hover highlight */
+}
+
+/* -----------------------------
+   Sidebar Gradient
+   ----------------------------- */
+.main-sidebar {
+    background: linear-gradient(180deg, #8B4513, #4B3621) !important; /* top to bottom brown → coffee */
+    color: #fff !important;
+    border-right: none !important;
+}
+
+.main-sidebar .brand-link,
+.main-sidebar .nav-link {
+    color: #fff !important;
+}
+
+.main-sidebar .nav-link.active {
+    background: rgba(255, 255, 255, 0.1) !important; /* subtle active highlight */
+}
+
+.main-sidebar .nav-link:hover {
+    background: rgba(255, 255, 255, 0.15) !important; /* subtle hover effect */
+}
+
+/* -----------------------------
+   Optional: Smooth Transitions
+   ----------------------------- */
+.main-sidebar .nav-link,
+.main-header .nav-link {
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* -----------------------------
+   Optional: Sidebar Scrollbar
+   ----------------------------- */
+.main-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.main-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.main-sidebar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+}
+
+
+
+
