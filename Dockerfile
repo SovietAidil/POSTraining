@@ -1,11 +1,12 @@
 FROM php:8.2-cli
 
-# Install system dependencies
+# Install system dependencies (IMPORTANT: includes libsqlite3-dev)
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
     libzip-dev \
     libpng-dev \
+    libsqlite3-dev \
     curl \
     && docker-php-ext-install pdo pdo_sqlite zip gd
 
@@ -28,10 +29,10 @@ RUN composer install --no-dev --optimize-autoloader
 # Build frontend assets
 RUN npm install && npm run build
 
-# Create SQLite database
+# Create SQLite database file
 RUN mkdir -p /tmp && touch /tmp/database.sqlite
 
-# Run migrations
+# Run migrations once
 RUN php artisan migrate --force
 
 # Expose Render port
