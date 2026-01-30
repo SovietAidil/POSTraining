@@ -1,31 +1,41 @@
 FROM php:8.2-cli
 
-# System deps
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
     libzip-dev \
     libpng-dev \
-    npm \
+    curl \
     && docker-php-ext-install pdo pdo_sqlite zip gd
 
-# Composer
+# Install Node.js (for npm)
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs
+
+# Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
+# Set working directory
 WORKDIR /app
+
+# Copy project files
 COPY . .
 
-# PHP + frontend deps
+# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
+
+# Build frontend assets
 RUN npm install && npm run build
 
-# SQLite database file
+# Create SQLite database
 RUN mkdir -p /tmp && touch /tmp/database.sqlite
 
-EXPOSE 10000
-
-# Run migrations once during build
+# Run migrations
 RUN php artisan migrate --force
+
+# Expose Render port
+EXPOSE 10000
 
 # Start Laravel
 CMD php -S 0.0.0.0:10000 -t public
