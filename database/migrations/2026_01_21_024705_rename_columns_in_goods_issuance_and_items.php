@@ -11,13 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('goods_issuance_items', function (Blueprint $table) {
-            $table->renameColumn('receipt_number','issuance_number');
-        });
+        // goods_issuance_items
+        if (Schema::hasColumn('goods_issuance_items', 'receipt_number')) {
+            Schema::table('goods_issuance_items', function (Blueprint $table) {
+                $table->renameColumn('receipt_number', 'issuance_number');
+            });
+        }
 
-        Schema::table('goods_issuances', function (Blueprint $table) {
-            $table->renameColumn('receipt_number','issuance_number');
-        });
+        // goods_issuances
+        if (Schema::hasColumn('goods_issuances', 'receipt_number')) {
+            Schema::table('goods_issuances', function (Blueprint $table) {
+                $table->renameColumn('receipt_number', 'issuance_number');
+            });
+        }
     }
 
     /**
@@ -25,12 +31,18 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('goods_issuance_items', function (Blueprint $table) {
-            $table->renameColumn('issuance_number','receipt_number');
-        });
+        // goods_issuance_items
+        if (Schema::hasColumn('goods_issuance_items', 'issuance_number')) {
+            Schema::table('goods_issuance_items', function (Blueprint $table) {
+                $table->renameColumn('issuance_number', 'receipt_number');
+            });
+        }
 
-        Schema::table('goods_issuances', function (Blueprint $table) {
-            $table->renameColumn('issuance_number','receipt_number');
-        });
+        // goods_issuances
+        if (Schema::hasColumn('goods_issuances', 'issuance_number')) {
+            Schema::table('goods_issuances', function (Blueprint $table) {
+                $table->renameColumn('issuance_number', 'receipt_number');
+            });
+        }
     }
 };
