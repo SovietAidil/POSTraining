@@ -32,9 +32,6 @@ RUN npm install && npm run build
 # Create SQLite database file
 RUN mkdir -p /tmp && touch /tmp/database.sqlite
 
-# Run migrations once
-RUN php artisan migrate --force
-
 # Expose Render port
 EXPOSE 10000
 
